@@ -12,3 +12,15 @@
 
 ![alt text](image.png)
 ![alt text](image-1.png)
+
+### FRONTEND | HTML | CSS | JAVASCRIPT | BACKEND | Node.js + EXPRESS | nginx:alpine | mongodb
+
+FRONTEND RUNNING IN http://localhost:8080/
+
+![alt text](image-2.png)
+![alt text](image-3.png)
+
+BACKEND RUNNING IN http://localhost:5000/
+![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-6.png)

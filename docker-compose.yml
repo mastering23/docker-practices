@@ -1,9 +1,40 @@
 services:
-  web:
+  # Frontend - Nginx sirviendo archivos estáticos
+  frontend:
     image: nginx:alpine
     ports:
       - "8080:80"
     volumes:
-      - ./:/usr/share/nginx/html:ro
-    container_name: app-tareas
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+    container_name: frontend
     restart: unless-stopped
+
+  # Backend - API REST con Node.js
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017
+    depends_on:
+      - mongodb
+    container_name: backend
+    restart: unless-stopped
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # Base de datos - MongoDB
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    container_name: mongodb
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
